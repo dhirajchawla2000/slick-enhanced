@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../build/css/style.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://use.typekit.net/asn5syw.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+</head>
+
+<body>
+   <section class="mi-carousel"
+    data-autoplay = "true"
+    data-autoplay-speed = "2000"
+    data-view-photos = "#">
+     <div class="slider-slide">
+       <img src="images/1.jpg">
+     </div>
+     <div class="slider-slide">
+       <img src="images/2.jpg">
+     </div>
+     <div class="slider-slide">
+       <img src="images/3.jpg">
+     </div>
+     <div class="slider-slide">
+       <img src="images/4.jpg">
+     </div>
+     <div class="slider-slide">
+       <img src="images/5.jpg">
+     </div>
+   </section>
+    <script type="text/javascript" src="../build/slick.js"></script>
+    <script type="text/javascript">
+      /**
+       * Initialize global widget on dom ready
+       */
+      $(function() {
+          // Default configuration.
+          var defaults = {
+              autoplay: true,
+              autoplaySpeed: 3000,
+              viewButtonUrl: '#',
+              infinite: true,
+              slidesToScroll: 1,
+              variableWidth: true
+          };
+          // Carousel initialization.
+          $('.mi-carousel').slick(defaults);
+      });
+    </script>
+</body>
+
+</html>

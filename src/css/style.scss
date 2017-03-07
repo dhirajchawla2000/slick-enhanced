@@ -1,0 +1,281 @@
+/* Font Family */
+$font-proximanova: "ProximaNova";
+$icons-marriotticon: "MarriottIcons";
+$base-font-family: $font-proximanova, "Calibri", Arial, "Helvetica", Helvetica, sans-serif;
+
+/* Colors */ 
+$white: #fff;
+$black: #1c1c1c;
+$dark-blue: #0666af;
+$dark-grey: #777;
+
+/* Box Shadow */
+$box-shadow-slide: rgba(0, 0, 0, 0.33);
+
+/******************************************************************/
+
+html {
+    font-size: 16px;
+}
+
+@font-face {
+    font-family: $font-proximanova;
+    src: url("fonts/proxima-nova-all/proxima-nova-regular-webfont.eot");
+    src: url("fonts/proxima-nova-all/proxima-nova-regular-webfont.eot?#iefix") format('embedded-opentype'), url("fonts/proxima-nova-all/proxima-nova-regular-webfont.woff") format('woff'), url("fonts/proxima-nova-all/proxima-nova-regular-webfont.ttf") format('truetype'), url("fonts/proxima-nova-all/proxima-nova-regular-webfont.svg") format('svg');
+}
+
+@font-face {
+    font-family: $icons-marriotticon;
+    src: url("fonts/proxima-nova-all/marriott-icons.eot");
+    src: url("fonts/proxima-nova-all/marriott-icons.eot?#iefix") format('embedded-opentype'), url("fonts/proxima-nova-all/marriott-icons.woff") format('woff'), url("fonts/proxima-nova-all/marriott-icons.ttf") format('truetype'), url("fonts/proxima-nova-all/marriott-icons.svg") format('svg');
+}
+
+body {
+    background-color: $white;
+    color: $black;
+    font-family: $base-font-family;
+}
+
+/* Mixins */
+
+@mixin element-spacing($margin, $padding) {
+    margin: $margin;
+    padding: $padding;
+}
+
+@mixin element-dimensions($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin element-positioning($top, $left) {
+    top: $top;
+    left: $left;
+}
+
+/* Slider */
+
+.slick-slider {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+
+    /* Styles for Next and Previous button */
+    .slick-prev,
+    .slick-next {
+        @include element-dimensions(4rem, 4rem);
+
+        position: absolute;
+        top: 40%;
+        right: 0;
+        z-index: 1;
+        display: block;
+        outline: none;
+        border: none;
+        background: $white;
+        box-shadow: 0 0.5rem 1.25rem 0 $box-shadow-slide;
+        color: $dark-grey;
+        cursor: pointer;
+
+        &::before,
+        &::after {
+            @include element-dimensions(0.875rem, 0.125rem);
+
+            position: absolute;
+            top: 40%;
+            right: 1.5rem;  /* 24px */
+            bottom: 0;
+            margin: auto 0;
+            background: $dark-grey none repeat scroll 0 0;
+            content: "";
+            transform-origin: right;
+        }
+
+        &.slick-prev {
+            transform: rotate(180deg);
+        }
+
+        &::after {
+            top: 0;
+            transform: rotate(-45deg);
+        }
+
+        &::before {
+            top: 0.125rem;
+            transform: rotate(45deg);
+        }
+
+        &:hover::before,
+        &:hover::after {
+            background-color: $dark-blue;
+        }
+    }
+
+    /* Overriding plugin inline styles with !important */
+    .slick-next,
+    .slick-prev {
+
+        @media (--large-viewport) {
+            display: inline-block !important;
+        }
+    }
+
+    .slick-prev {
+        left: 0;
+
+        @media (--extra-large-viewport) {
+            left: 1.875rem;
+        }
+    }
+
+    .slick-next {
+        right: 0;
+
+        @media (--extra-large-viewport) {
+            right: 1.875rem;
+        }
+    }   /* End of slick-prev and slick-next */
+
+    /* Styles for list of images in the carousel */
+    .slick-list {
+        @include element-spacing(0, 0);
+
+        position: relative;
+        display: block;
+        overflow: hidden;
+        transform: translate3d(0, 0, 0);
+
+        &:focus {
+            outline: none;
+        }
+
+        &.dragging {
+            cursor: pointer;
+            cursor: hand;
+        }
+
+        .slick-track {
+            @include element-positioning(0, 0);
+
+            position: relative;
+            display: block;
+            transform: translate3d(0, 0, 0);
+
+            &::before,
+            &::after {
+                display: table;
+                content: "";
+            }
+
+            &::after {
+                clear: both;
+            }
+
+            &.slick-loading {
+                visibility: hidden;
+            }
+
+            .slick-slide {
+                position: relative;
+                float: left;
+                margin-left: 0.3125rem;
+
+                &[dir="rtl"] {
+                    float: right;
+                }
+
+                img {
+                    display: block;
+                    width: 100%;
+                    max-height: 100%;
+                }
+
+                &.slick-loading img {
+                    display: none;
+                }
+
+                &.dragging img {
+                    pointer-events: none;
+                }
+            }  /* End of slick-slide */
+        }  /* End of slick-track */
+    }   /* End of slick-list */
+
+    &.slick-initialized .slick-slide {
+        @include element-dimensions(100%, 14.0625rem);
+
+        display: block;
+        max-width: 25rem;   /* 400px */
+    }
+
+    &.slick-initialized .slick-slide-one-image {
+        height: 16.875rem;   /* 270px */
+        max-width: 37.5rem;   /* 480px */
+    }
+
+    &.slick-loading .slick-slide {
+        visibility: hidden;
+    }
+
+    &.slick-vertical .slick-slide {
+        display: block;
+        height: auto;
+        border: 0.0625rem solid transparent;
+    }
+
+    &.slick-arrow.slick-hidden {
+        display: none;
+    }
+
+    /* View Photos Link */
+    .view-slides {
+        bottom: 1.25rem;
+        position: absolute;
+        left: 1.25rem;
+    }
+
+    /* Media queries for different viewports */
+
+    /* This applies from 601-768px (M) */
+    @media (--medium-viewport) {
+        &.slick-initialized .slick-slide {
+            max-width: 48rem;   /* 768px */
+            height: 19.25rem;   /* 308px */
+        }
+    }
+
+    /* This applies from 769-1024px (L) */
+    @media (--large-viewport) {
+        &.slick-initialized .slick-slide {
+            max-width: 64rem;   /* 1024px */
+            height: 25.63rem;   /* 410px */
+        }
+    }
+
+    /* This applies from 1025px (XL) */
+    @media (--extra-large-viewport) {
+        &.slick-initialized .slick-slide {
+            max-width: 73.75rem;    /* 1180px */
+            height: 29.5rem;    /* 472px */
+        }
+
+        &.slick-initialized .slick-slide-full-stretch {
+            max-width: 90rem;    /* 1440px */
+            height: 36rem;    /* 576px */
+        }
+    }   /* End of media queries */
+}  /* End of slick-slider */
+
+div.l-pos-relative a.l-pos-absolute {
+    bottom: 1.25rem;
+    left: 1.25rem;
+
+    @media (--extra-large-viewport) {
+        left: 9.375rem;
+    }
+}
