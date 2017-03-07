@@ -11,4 +11,4 @@ jQuery Image Carousel is a jQuery plugin to create sliders with fantastic visual
 * Pretty lightweight
 * Doesn't rely on external libraries (besides jQuery)
 
-###[Demo](https://github.com/mi-gitrepo/mi-carousel/blob/master/example/demo.html)
+###[Demo](https://github.com/mi-gitrepo/slick-enhanced/blob/master/example/demo.html)
