@@ -1,6 +1,6 @@
 {
   "name": "slick-enhanced",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A Jquery image slider",
   "main": "src/slick.js",
   "scripts": {

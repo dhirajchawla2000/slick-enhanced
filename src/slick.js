@@ -1126,7 +1126,14 @@ Website: http://kenwheeler.github.io
 
             if (_.options.rtl === true) {
                 if (targetSlide[0]) {
-                    targetLeft = (_.$slideTrack.width() - targetSlide[0].offsetLeft - targetSlide.width()) * -1;
+                    // This change is done to keep slide in center of screen on
+                    // clicking next and previous button for RTL.
+                    // Left offset is decreased by (width of screen - width of a slide) / 2
+                    // Mode is infinite: true, variableWidth: true, slidesToScroll: 1
+
+                    var leftOffsetAdjustment = _.options.applyLeftOffset ? (_.listWidth - $(targetSlide[0]).width()) / 2 : 0;
+
+                    targetLeft = (_.$slideTrack.width() - targetSlide[0].offsetLeft - targetSlide.width() - leftOffsetAdjustment) * -1;
                 } else {
                     targetLeft =  0;
                 }
